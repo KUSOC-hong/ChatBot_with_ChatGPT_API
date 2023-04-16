@@ -51,6 +51,7 @@ app.post('/omchat', async function (req, res) {
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: messages
+      
   });
   let om_chat = completion.data.choices[0].message['content']
   console.log(om_chat+"\n");
