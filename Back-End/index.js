@@ -1,6 +1,6 @@
 // basic import
 require("dotenv").config();
-
+const serverless = require('serverless-http')
 const { Configuration, OpenAIApi } = require("openai");
 const express = require('express')
 let cors = require('cors')
@@ -11,13 +11,12 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-//CORS issue sol
-// let corsOptions = {
-//     origin: 'https://www.domain.com',
-//     credentials: true
-// }
-// app.use(cors(corsOptions));
-app.use(cors());
+// CORS issue sol
+let corsOptions = {
+    origin: 'https://om-vot.pages.dev',
+    credentials: true
+}
+app.use(cors(corsOptions));
 
 //POST req.body
 app.use(express.json()) // for parsing application/json
@@ -58,4 +57,6 @@ app.post('/omchat', async function (req, res) {
   res.json({"assistant": om_chat});
 });
 
-app.listen(3000)
+// For lambda
+module.exports.handler = serverless(app);
+// app.listen(3000)

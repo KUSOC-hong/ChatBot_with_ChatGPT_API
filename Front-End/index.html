@@ -195,9 +195,10 @@
 
             chatInput.value = '';
 
-            const response = await fetch('http://localhost:3000/omchat', {
+            const response = await fetch('https://uxyt2jspwk.execute-api.ap-northeast-2.amazonaws.com/prod/omchat', {
                 method: 'POST',
                 headers: {
+                    // 'Access-Control-Allow-Origin': '*',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
